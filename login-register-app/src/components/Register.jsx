@@ -8,10 +8,28 @@ export const Register = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email);
-    props.Register(name, email, pass)
-    setName("")
-    setEmail("")
-    setPass("")
+    ClientRegister(name, email, pass)
+    //setName("")
+    //setEmail("")
+    //setPass("")
+  }
+
+  const ClientRegister = async (name, email, pass) => {
+    await fetch("http://127.0.0.1:5000/register", {
+      method: "POST",
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        pass: pass,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .catch((err) => {
+        console.log(err.message);
+      });
   }
 
   return (
