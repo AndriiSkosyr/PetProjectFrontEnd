@@ -15,7 +15,7 @@ export const Register = (props) => {
   }
 
   const ClientRegister = async (name, email, pass) => {
-    await fetch("http://127.0.0.1:5000/register", {
+    await fetch("http://127.0.0.1:5000/client", {
       method: "POST",
       body: JSON.stringify({
         name: name,
