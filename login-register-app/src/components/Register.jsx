@@ -1,26 +1,28 @@
 import React, { useState } from "react";
 
+
 export const Register = (props) => {
   const [email, setEmail] = useState("")
-  const [pass, setPass] = useState("")
+  const [password, setPass] = useState("")
   const [name, setName] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email);
-    ClientRegister(name, email, pass)
+    ClientRegister(name, email, password)
     //setName("")
     //setEmail("")
     //setPass("")
   }
 
-  const ClientRegister = async (name, email, pass) => {
+  const ClientRegister = async (name, email, password) => {
     await fetch("http://127.0.0.1:5000/client", {
       method: "POST",
       body: JSON.stringify({
-        name: name,
-        email: email,
-        pass: pass,
+        clientName: name,
+        clientEmail: email,
+        clientPassword: password,
+        clientId: Math.floor(Math.random() * 10)
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -41,7 +43,7 @@ export const Register = (props) => {
         <label htmlFor="email">Email</label>
         <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email" />
         <label htmlFor="password">Password</label>
-        <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
+        <input value={password} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
         <button type="submit">Register</button>
       </form>
       <button className="link-btn" onClick={() => props.onFormSwitch("login")}>Already have an account? Login here.</button>
