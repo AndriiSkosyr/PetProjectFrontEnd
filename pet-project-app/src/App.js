@@ -9,16 +9,17 @@ import Profile from './Pages/profile';
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/about" exact element={<About />} />
-        <Route path="/settings" exact element={<Settings />} />
-        <Route path="/profile" exact element={<Profile />} />
-      </Routes>
-    </Router>
-
+    <>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/about" exact element={<About />} />
+          <Route path="/settings" exact element={<Settings />} />
+          <Route path="/profile" exact element={<Profile />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
