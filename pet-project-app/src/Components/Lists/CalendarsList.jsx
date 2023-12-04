@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const CalendarsList = () => {
     const [calendarsArray, setCalendars] = useState([])
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    useEffect(() => {        
         GetCalendars();
-        console.log(calendarsArray);
-    }
+    },[]);    
 
     const GetCalendars = async () => {
         await fetch("http://127.0.0.1:5000/calendar", {
@@ -31,9 +29,7 @@ const CalendarsList = () => {
                 {calendarsArray.map(item => {
                     return <li id={item.CalendarId}>{item.CalendarName}</li>
                 })}
-            </ul>
-            <button type="submit" onClick={handleSubmit}>Get info</button>
-
+            </ul>          
         </>
     )
 }
