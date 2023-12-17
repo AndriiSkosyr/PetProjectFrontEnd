@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
 
-const CalendarsList = () => {
-    const [calendarsArray, setCalendars] = useState([])
+const EventsList = () => {
+    const [eventsArray, setEvents] = useState([])
 
     useEffect(() => {        
-        GetCalendars();
-        if (calendarsArray.length == 0) {
-            console.log("empty");
-        }
+        GetEvents();
     },[]);    
 
-    const GetCalendars = async () => {
-        await fetch("http://127.0.0.1:5000/calendar", {
+    const GetEvents = async () => {
+        await fetch("http://127.0.0.1:5000/event", {
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
             },
         })
             .then((response) => response.json())
             .then((response) => {
-                setCalendars(response)
+                setEvents(response)
             })
             .catch((err) => {
                 console.log(err.message);
@@ -29,12 +26,12 @@ const CalendarsList = () => {
     return (
         <>
             <ul>
-                {calendarsArray.map(item => {
-                    return <li id={item.CalendarId}>{item.CalendarName}</li>
+                {eventsArray.map(item => {
+                    return <li id={item.EventId}>{item.EventName}</li>
                 })}
             </ul>          
         </>
     )
 }
 
-export default CalendarsList
+export default EventsList
